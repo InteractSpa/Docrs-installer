@@ -1,0 +1,20 @@
+
+<h4 class="mb-xlg">Timeline</h4>
+
+<div class="timeline timeline-simple mt-xlg mb-md">
+	<div class="tm-body">
+		<span ng-repeat="events in user.events">
+			<div class="tm-title">
+				<h3 class="h5 text-uppercase">{{events.month}}</h3>
+			</div>
+			<ol class="tm-items">
+				<li ng-repeat="item in events.items">
+					<div class="tm-box">
+						<p class="text-muted mb-none">{{item.timelapse}}</p>
+						<p>{{item.description}}</p>
+					</div>
+				</li>
+			</ol>
+		</span>
+	</div>
+</div>

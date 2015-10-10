@@ -1,0 +1,79 @@
+<br />
+<div class="container-fluid" >
+	<div class="row">
+		<div class="col-md-12">
+			<a class="btn btn-default btn-lg" href="#/convocations"><i class="fa fa-chevron-left"></i> Indietro</a>
+			<a ng-show="canEdit()" class="btn btn-info btn-lg" href="#/convocations/{{convocation.id}}/edit"><i class="fa fa-pencil-square-o"></i> Modifica</a>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-xs-12">
+			<h2 class="text-uppercase"><i class="fa fa-list"></i> Programma dei lavori del consiglio comunale</h2>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-12">
+
+			<div class="panel panel-default">
+				<div class="panel-body">
+					<div class="row">
+						<div class="col-md-8">
+							<h4 class="text-uppercase">{{convocation.title}}</h4>
+						</div>
+						<div class="col-md-4 text-right">
+							{{getWeekdayName(convocation.start)}} {{convocation.start| date:'dd/MM/yyyy'}}<br />
+							dalle ore <b>{{convocation.start| date:'HH:mm'}}</b><br />
+							alle ore <b>{{convocation.end| date:'HH:mm'}}</b>
+						</div>
+					</div>
+					<div style="margin-top: 20px">{{convocation.description}}</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="row" ng-show="{{dayOrders.length > 0}}">
+		<div class="col-md-12">
+			<h4><i class="fa fa-file-text-o"></i> Ordine del Giorno</h4>
+			<ul>
+				<li ng-repeat="dayOrder in dayOrders">
+					{{dayOrder.title}}<br />
+					{{dayOrder.description}}
+					<div class="col-md-12" style="padding-left: 55px;">
+						<ul class="list-unstyled">
+							<li ng-repeat="document in dayOrder.documents"><a target="_blank" href="/docrs/getAsset?path={{document.path}}">{{document.name}}</a></li>
+						</ul>
+					</div>
+				</li>
+			</ul>
+		</div>
+	</div>
+
+	<div class="row" ng-show="{{documents.length > 0}}">
+		<div class="col-md-12">
+			<h3><i class="fa fa-files-o"></i> Lista Documenti</h3>
+			<ul class="list-unstyled" style="padding-left: 50px">
+				<li ng-repeat="document in documents" style="padding: 15px; font-size: 18px;">
+					<a target="_blank" href="/docrs/getAsset?path={{document.document.path}}"><i class="fa fa-file-pdf-o"></i> {{document.document.name}}</a></li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+<div class="modal fade" id="testModal">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+				<h4 class="modal-title">Modal title</h4>
+			</div>
+			<div class="modal-body">
+				<p>One fine body&hellip;</p>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				<button type="button" class="btn btn-primary">Save changes</button>
+			</div>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

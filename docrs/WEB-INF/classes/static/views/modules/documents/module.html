@@ -1,0 +1,81 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="page-header" style="margin: 1px 0 20px;">
+            <h2>Lista Documenti Condivisi</h2>
+
+            <div class="right-wrapper pull-right">
+                <ol class="breadcrumbs">
+                    <li>
+                        <a href="#/">
+                            <i class="fa fa-home"></i>
+                        </a>
+                    </li>
+                    <li><span>Lista Documenti</span></li>
+                </ol>
+
+                <span class="sidebar-right-toggle" data-open="sidebar-right">&nbsp</span>
+            </div>
+        </div>
+    </div>
+
+	<div class="row">
+        <div class="col-md-2 folders-menu">
+            <h6 class="title">Cartelle</h6>
+            <hr class="separator">
+            <ul class="mg-folders" frang-tree>
+				<li ng-click="loadDocuments()">
+					<i class="fa fa-chevron-right"></i> <b>Tutti</b>
+				</li><li ng-click="showPreferedDocuments()">
+					<i class="fa fa-star"></i> Preferiti
+				</li>
+				<li>
+					<hr class="separator">
+				</li>
+				<li style="cursor: pointer" ng-repeat="convocation in convocations" ng-click="showConvocationDocuments(convocation)">
+					<b>{{convocation.title}}</b><br />
+					{{convocation.start | date:'dd-MM-yyyy HH:mm'}}
+				</li>
+            </ul>
+        </div>
+        <div class="col-md-10 media-gallery">
+			<div class="row">
+				<div class="col-md-4"><input ng-show="canEdit()" id="fileupload" type="file" name="file" multiple data-url="/docrs/uploadCustom" data-sequential-uploads="true"></div>
+				<div class="col-md-4"><select style="visibility: hidden" ng-model="documentType" ng-options="documentType.name for documentType in documentTypes"></select></div>
+				<div class="col-md-4">
+					<div class="input-group">
+						<!-- <div class="input-group-addon"><i class="fa fa-search"></i></div> -->
+<!-- 						<input ng-model="searchText" class="form-control" type="text" placeholder="Cerca..." ng-keypress="searchDocuments($event)">  -->
+						<input ng-model="searchText" class="form-control" type="text" placeholder="Cerca..." ng-keypress="searchDocuments($event)">
+					</div>
+				</div>
+			</div>
+            <div class="row mg-files">
+				<table class="table table-striped">
+					<thead>
+					<th>Nome</th>
+					<th>Tipo</th>
+					<th colspan="2">&nbsp;</th>
+					</thead>
+					<tbody>
+						<tr ng-show="!document.deleted" ng-repeat="document in documents">
+							<td>{{document.name}}</td>
+							<td>{{getDocumentTypeName(document)}}</td>
+							<td>
+								<span style="margin-right: 4px;" class="label label-primary" ng-repeat="tag in document.tags">
+									{{tag.name}}&nbsp;<em class="fa fa-times" ng-click="removeTag(document,tag)"></em>
+								</span>
+							</td>
+							<td style="width: 280px">
+								<a class="btn btn-success" ng-click="linkDocument(document.id)" ng-show="documentOwner.hasOwner"><i class="fa fa-plus"></i> AGGIUNGI</a>
+								<a class="btn btn-warning" ng-show="!document.prefered" ng-click="addDocumentToPrefered(document)"><i class="fa fa-star-half-full"></i> AGGIUNGI</a>
+								<a class="btn btn-info" target="_blank" href="/docrs/getAsset?path={{document.path}}"><i class="fa fa-search"></i></a>
+								<a class="btn btn-info" ng-show="canEdit()" ng-click="addTag(document)" title="Aggiungi nuovo TAG"><i class="fa fa-tag"></i></a>
+								<button class="btn btn-danger" ng-show="canEdit()" ng-click="deleteDocument(document)"><i class="fa fa-times"></i></button>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+            </div>
+        </div>
+    </div>
+</div>

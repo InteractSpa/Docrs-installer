@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Implementation-Vendor: Pivotal Software, Inc.
+Implementation-Title: Web Platform
+Implementation-Version: 0.0.1-SNAPSHOT
+Implementation-Vendor-Id: com.programmingfree
+Build-Jdk: 1.7.0_79
+Built-By: matteo
+Created-By: Maven Integration for Eclipse
+Main-Class: boot.Application
+

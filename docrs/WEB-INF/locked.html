@@ -1,0 +1,30 @@
+<html lang="en" ng-app="main">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+        <title>Pagina Bloccata</title>
+
+        <link rel="stylesheet" href="./css/bootstrap.min.css" />
+        <link rel="stylesheet" href="./css/font-awesome.min.css" />
+		<style type="text/css">
+			body {
+				background-color: #428BCA;
+				color: #DADADA;
+			}
+		</style>
+        <script type="text/javascript" src="./js/libs/jquery.min.js"></script>
+		<script type="text/javascript">
+			function tryToLogin() {
+				location.href="/";
+			}
+		</script>
+    </head>
+    <body onclick="tryToLogin()">
+		<div style="text-align: center; margin-top: 23%">
+			<h2><i class="fa fa-lock"></i><br />Pagina Bloccata</h2>
+			<h5>Clicca per sbloccare</h5>
+		</div>
+    </body>
+</html>

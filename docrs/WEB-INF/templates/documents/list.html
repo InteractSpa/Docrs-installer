@@ -1,0 +1,21 @@
+<table class="table table-striped" th:inline="text">
+	<thead>
+	<th>Nome</th>
+	<th>Tipo</th>
+	<th>&nbsp;</th>
+</thead>
+<tbody>
+	<tr th:each="document : ${documents}">
+		<td>[[${document.name}]]</td>
+		<td>{{getDocumentTypeName(document)}}
+			<span class="label label-primary">Primary</span>
+		</td>
+		<td>
+			<a class="btn btn-success" ng-click="linkDocument(document.id)" ><i class="fa fa-plus"></i> AGGIUNGI</a>
+			<a class="btn btn-warning" ng-click="addDocumentToPrefered(document)"><i class="fa fa-star-half-full"></i> AGGIUNGI</a>
+			<a class="btn btn-info" target="_blank" href="/getAsset?path={{document.path}}"><i class="fa fa-search"></i></a>
+			<button class="btn btn-danger" ng-show="canEdit()" ng-click="deleteDocument(document)"><i class="fa fa-times"></i></button>
+		</td>
+	</tr>
+</tbody>
+</table>

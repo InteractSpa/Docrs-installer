@@ -1,0 +1,33 @@
+<html lang="en" ng-app="main">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+        <title>Login</title>
+
+        <link rel="stylesheet" href="./css/bootstrap.min.css" />
+        <link rel="stylesheet" href="./css/font-awesome.min.css" />
+		<style type="text/css">
+			body {
+				background-color: #7EBED7;
+			}
+		</style>
+        <script type="text/javascript" src="./js/libs/jquery.min.js"></script>
+    </head>
+    <body>
+    	<div style="text-align: center; margin-top: 20%">
+			<div><h4>Comune di Docrs</h4></div>
+			<img src="./images/logo_comune.png" />
+		</div>
+		<div style="text-align: center; margin-top: 3%">
+			<div ng-controller="MenuController">
+				<form action="/docrs/login" method="POST">
+					<input type="text" name="username" placeholder="Username" />
+					<input type="password" name="password" placeholder="Password" />
+					<input type="submit" value="Login" />
+				</form>
+			</div>
+		</div>
+    </body>
+</html>

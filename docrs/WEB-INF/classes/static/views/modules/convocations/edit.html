@@ -1,0 +1,244 @@
+<br />
+<div class="container-fluid">
+
+	<div class="row">
+		<div class="col-md-12">
+			<a class="btn btn-default btn-lg" href="#/convocations"><i
+				class="fa fa-chevron-left"></i> Indietro</a>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-xs-12">
+			<h2>
+				<i class="fa fa-list"></i> Dettaglio Convocazione
+			</h2>
+		</div>
+	</div>
+	<br />
+	<div class="row">
+		<div class="col-md-12">
+			<form class="form-horizontal" role="form">
+
+				<div class="form-group">
+					<label for="title" class="col-sm-2 control-label">Titolo</label>
+					<div class="col-sm-10">
+						<input type="text" id="title" ng-model="convocation.title"
+							class="form-control" name="title"
+							placeholder="Titolo Convocazione">
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label for="description" class="col-sm-2 control-label">Descrizione</label>
+					<div class="col-sm-10">
+						<textarea rows="6" class="form-control"
+							ng-model="convocation.description" name="description"
+							id="description" placeholder="Descrizione"></textarea>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label for="start" class="col-sm-2 control-label"
+						style="margin-top: 24px;">Data Inizio</label>
+					<div class="col-sm-2" style="margin-top: 28px;">
+						<p class="input-group">
+							<input type="text" class="form-control"
+								datepicker-popup="dd-MM-yyyy" ng-model="convocation.start"
+								is-open="openedStart" min-date="minDate" max-date="'2020-01-01'"
+								datepicker-options="dateOptions"
+								date-disabled="disabled(date, mode)" ng-required="true"
+								close-text="Close" /> <span class="input-group-btn">
+								<button type="button" class="btn btn-default"
+									ng-click="openStart($event)">
+									<i class="glyphicon glyphicon-calendar"></i>
+								</button>
+							</span>
+						</p>
+					</div>
+					<div class="col-sm-2">
+						<timepicker ng-model="convocation.starttime" hour-step="1"
+							minute-step="15" show-meridian="false"></timepicker>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label for="end" class="col-sm-2 control-label"
+						style="margin-top: 24px;">Data Fine</label>
+					<div class="col-sm-2" style="margin-top: 28px;">
+						<p class="input-group">
+							<input type="text" class="form-control"
+								datepicker-popup="dd-MM-yyyy" ng-model="convocation.end"
+								is-open="openedEnd" min-date="minDate" max-date="'2020-01-01'"
+								datepicker-options="dateOptions"
+								date-disabled="disabled(date, mode)" ng-required="true"
+								close-text="Close" /> <span class="input-group-btn">
+								<button type="button" class="btn btn-default"
+									ng-click="openEnd($event)">
+									<i class="glyphicon glyphicon-calendar"></i>
+								</button>
+							</span>
+						</p>
+					</div>
+					<div class="col-sm-2">
+						<timepicker ng-model="convocation.endtime" hour-step="1"
+							minute-step="15" show-meridian="false"></timepicker>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<div class="col-sm-offset-2 col-sm-10">
+						<button type="submit" class="btn btn-success" ng-click="save()">
+							<i class="fa fa-floppy-o"></i> Salva
+						</button>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+	<br> 
+	
+	<span ng-if="convocation.id>(-1)">
+
+		<div class="row">
+			<div class="col-md-12">
+				<h4>
+					<i class="fa fa-file-text-o"></i> Ordine del Giorno
+				</h4>
+				<form class="form-horizontal" role="form">
+					<div class="form-group">
+						<label for="title" class="col-sm-1 control-label">Titolo</label>
+						<div class="col-sm-4">
+							<input type="hidden" id="id" ng-model="dayOrder.id" /> <input
+								type="text" id="title" ng-model="dayOrder.title"
+								class="form-control" name="title" placeholder="Titolo OdG">
+						</div>
+						<label for="title" class="col-sm-1 control-label">Descrizione</label>
+						<div class="col-sm-4">
+							<input type="text" id="title" ng-model="dayOrder.description"
+								class="form-control" name="title" placeholder="Descrizione OdG">
+						</div>
+						<div class="col-sm-2">
+							<button type="submit" class="btn btn-success"
+								ng-click="addDayOrder()">
+								<i class="fa fa-floppy-o"></i> <span ng-show="dayOrder.id > 0">Salva</span><span
+									ng-show="dayOrder.id <= 0">Aggiungi</span>
+							</button>
+						</div>
+					</div>
+				</form>
+
+				<br />
+				<ul>
+					<li class="list-unstyled" ng-repeat="dayOrder in dayOrders">
+						<div class="row">
+							<div class="col-md-10">
+								<h5>- {{dayOrder.title}}</h5>
+							</div>
+							<div class="col-md-2">
+								<button class="btn btn-primary"
+									ng-click="editDayOrder(dayOrder)" title="Modifica ODG">
+									<i class="fa fa-pencil" title="Allega documento"></i>
+								</button>
+								<a class="btn btn-info" title="Allega Documenti"
+									href="#/documents/dayOrder/{{dayOrder.id}}"><i
+									class="fa fa-paperclip" title="Allega documento"></i></a> <a
+									class="btn btn-danger" title="Elimina elemento"
+									ng-click="deleteDayOrder(dayOrder.id)"><i
+									class="fa fa-times" title="Elimina"></i></a>
+							</div>
+							<div class="col-md-12" style="padding-left: 25px;">
+								{{dayOrder.description}}</div>
+							<div class="col-md-12" style="padding-left: 55px;">
+								<ul class="list-unstyled">
+									<li ng-repeat="document in dayOrder.documents">
+										<div class="row" style="margin-bottom: 5px;">
+											<div class="col-md-9">
+												<a target="_blank" href="/docrs/getAsset?path={{document.path}}">{{document.name}}</a>
+											</div>
+											<div class="col-md-3 text-right">
+												<button class="btn btn-danger"
+													ng-click="removeDayOrderDocument(dayOrder, document)">
+													<i class="fa fa-times" title="Elimina"></i> Elimina
+												</button>
+											</div>
+										</div>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-8">
+				<h3>
+					<i class="fa fa-files-o"></i> Lista Documenti
+				</h3>
+			</div>
+			<div class="col-md-4  text-right">
+				<a class="btn btn-info"
+					href="#/documents/convocation/{{convocation.id}}"><i
+					class="fa fa-plus"></i> Aggiungi Documento</a>
+			</div>
+			<div class="col-md-12">
+				<ul class="list-unstyled" style="padding-left: 50px"
+					ng-show="{{documents.length > 0}}">
+					<li ng-repeat="document in documents"
+						style="padding-top: 15px; padding-left: 15px; font-size: 22px;">
+						<div class="row" style="margin-bottom: 5px;">
+							<div class="col-md-9">
+								<a target="_blank"
+									href="/docrs/getAsset?path={{document.document.path}}">{{document.document.name}}</a>
+							</div>
+							<div class="col-md-3 text-right">
+
+								<span ng-if="!document.sessionSchedule">
+									<button class="btn btn-default"
+										ng-click="addDocumentAsSessionSchedule(document)">
+										<i class="fa fa-circle-o" title="set"></i> Programma seduta
+									</button>
+								</span> <span ng-if="document.sessionSchedule">
+									<button class="btn btn-success"
+										ng-click="removeDocumentAsSessionSchedule(document)">
+										<i class="fa fa-circle" title="set"></i> Programma seduta
+									</button>
+								</span>
+								<button class="btn btn-danger"
+									ng-click="removeConvocationDocument(document)">
+									<i class="fa fa-times" title="Elimina"></i> Elimina
+								</button>
+
+							</div>
+						</div>
+					</li>
+				</ul>
+			</div>
+		</div>
+
+	</span>
+
+</div>
+
+<div class="modal fade" id="testModal">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">
+					<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+				</button>
+				<h4 class="modal-title">Modal title</h4>
+			</div>
+			<div class="modal-body">
+				<p>One fine body&hellip;</p>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				<button type="button" class="btn btn-primary">Save changes</button>
+			</div>
+		</div>
+		<!-- /.modal-content -->
+	</div>
+	<!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->

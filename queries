@@ -1,0 +1,2 @@
+INSERT INTO ldap_users values("23",NULL,NULL,NULL,"user","user","password",NULL,NULL,NULL,"interact","USER","user");
+INSERT INTO ldap_users values('24',NULL,NULL,NULL,'admin','admin','password',NULL,NULL,NULL,'interact','SEGRETARY','admin');

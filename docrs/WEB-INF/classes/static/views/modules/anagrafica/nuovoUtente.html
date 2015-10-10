@@ -1,0 +1,82 @@
+<div class="container-fluid">
+
+	<div class="row">
+		<div class="col-xs-12">
+			<h2>
+				<i class="fa fa-plus"></i> Nuovo Utente
+			</h2>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-md-12">
+			<a class="btn btn-default btn-lg" href="#/anagrafica"><i
+				class="fa fa-chevron-left"></i> Indietro</a>
+		</div>
+	</div>
+
+
+	<div class="row">
+		<div class="col-md-12">
+			<form class="form-horizontal" role="form">
+
+				<div class="form-group">
+					<label for="username" class="col-sm-2 control-label">Username</label>
+					<div class="col-sm-10">
+						<input type="text" name="username" ng-model="user.username">
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label for="email" class="col-sm-2 control-label">Email</label>
+					<div class="col-sm-10">
+						<input type="text" name="email" ng-model="user.email">
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label for="password" class="col-sm-2 control-label">Password</label>
+					<div class="col-sm-10">
+						<input type="password" name="password" ng-model="user.password">
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label for="name" class="col-sm-2 control-label">Nome</label>
+					<div class="col-sm-10">
+						<input type="text" name="name" ng-model="user.name">
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label for="surname" class="col-sm-2 control-label">Cognome</label>
+					<div class="col-sm-10">
+						<input type="text" name="surname" ng-model="user.surname">
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label for="username" class="col-sm-2 control-label">Tipo utenza</label>
+					<div class="col-sm-10">
+						<fieldset>
+							<select name="systemRole">
+								<option value="USER">NUOVO CONSIGLIERE</option>
+								<option value="SEGRETARY">NUOVO MEMBRO SEGRETERIA</option>
+							</select>
+						</fieldset>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<div class="col-sm-offset-2 col-sm-10">
+						<button type="submit" class="btn btn-success" ng-click="addUser()">
+							<i class="fa fa-floppy-o"></i> Salva
+						</button>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+
+
+</div>

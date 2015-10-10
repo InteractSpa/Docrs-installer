@@ -1,0 +1,96 @@
+<div class="container-fluid clearfix">
+	<div class="row">
+		<div class="page-header">
+			<h2>Profilo Utente</h2>
+
+			<div class="right-wrapper pull-right">
+				<ol class="breadcrumbs">
+					<li>
+						<a href="#/">
+							<i class="fa fa-home"></i>
+						</a>
+					</li>
+					<li><a href="#/users">Lista Utenti</a></li>
+					<li><span>Profilo Utente</span></li>
+				</ol>
+
+				<span class="sidebar-right-toggle" data-open="sidebar-right">&nbsp</span>
+			</div>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-md-4 col-lg-3">
+			<section class="panel">
+				<div class="panel-body">
+					<div class="thumb-info mb-md">
+						<img src="{{getUserProfileImageURL()}}" class="rounded img-responsive" alt="{{user.name}} {{user.surname}}">
+						<div class="thumb-info-title">
+							<span class="thumb-info-inner">{{user.name}} {{user.surname}}</span>
+							<span class="thumb-info-type">{{user.role}}</span>
+						</div>
+					</div>
+			</section>
+
+			<section class="panel">
+				<header class="panel-heading">
+					<div class="panel-actions">
+						<a href="#" class="fa fa-caret-down"></a>
+						<a href="#" class="fa fa-times"></a>
+					</div>
+
+					<h2 class="panel-title">Prossimi Eventi</h2>
+				</header>
+				<div class="panel-body">
+					<ul class="simple-post-list">
+						<li>
+							<div class="post-image">
+								<div class="img-thumbnail">
+									<a href="#">
+										<img src="/includes/images/image-na.jpg" width="18" height="20" alt="">
+									</a>
+								</div>
+							</div>
+							<div class="post-info">
+								<a href="#">Nullam Vitae Nibh Un Odiosters</a>
+								<div class="post-meta">
+									Jan 10, 2013
+								</div>
+							</div>
+						</li>
+						<li>
+							<div class="post-image">
+								<div class="img-thumbnail">
+									<a href="#">
+										<img src="/includes/images/image-na.jpg" width="18" height="20" alt="">
+									</a>
+								</div>
+							</div>
+							<div class="post-info">
+								<a href="#">Vitae Nibh Un Odiosters</a>
+								<div class="post-meta">
+									Jan 10, 2013
+								</div>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</section>
+		</div>
+
+		<!-- MAIN TABS CONTAINER -->
+		<div class="col-md-8 col-lg-9">
+			<div class="tabs">
+				<ul class="nav nav-tabs tabs-primary">
+					<li ng-repeat="item in profileTabs" class="{{getTabClass(item)}}">
+						<a ng-click="showTab(item)" data-toggle="tab">{{item.label}}</a>
+					</li>
+				</ul>
+				<div class="tab-content">
+					<div id="tab-content-{{item.id}}" ng-repeat="item in profileTabs" class="tab-pane {{getTabClass(item)}}" ng-include="item.templateURL"></div>
+				</div>
+			</div>
+		</div>
+		
+	</div>
+</div>
